@@ -43,6 +43,8 @@ stop:
 clean: stop
 	@echo "\ncleaning.."
 	-docker rm timetracker
+	-rm purecss*.tgz
+	-rm htmx*.tgz
 
 prune:
 	-docker image prune
