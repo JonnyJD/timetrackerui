@@ -8,7 +8,13 @@
 	max-width: 1600px;
 }
 
+#error-output {
+	color: #D8000C;
+	background-color: #FFD2D2;
+	padding: 0.5em;
+	display: none;
+}
+
 input {
 	margin-bottom: 0.5em;
-	margin-right: 0.5em;
 }
