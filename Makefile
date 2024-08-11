@@ -2,6 +2,10 @@
 
 all: start
 
+# build and trigger restart
+classes:
+	./gradlew classes
+
 update: update-purecss update-htmx
 
 update-purecss:
