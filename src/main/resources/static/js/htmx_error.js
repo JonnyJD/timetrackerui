@@ -43,7 +43,6 @@ function handleHTMXError(evt) {
 document.body.addEventListener('htmx:beforeRequest', function(evt) {
     document.getElementById('error-output').style.display = 'none';
     document.getElementById('error-output').innerHTML = '';
-
     evt.target.innnerHTML = '';
 });
 
