@@ -24,16 +24,18 @@ function handleHTMXError(evt) {
             errorText = xhr.responseText;
         }
     } else {
-        errorText = errorText + ': (type) ' + evt.type;
+        if (evt.type === "htmx:sendError") {
+            errorText = "could not send the request"
+        } else {
+            errorText = errorText + ': (type) ' + evt.type;
+        }
+        if (xhr.responseURL) {
+            errorText += ': ' + xhr.responseURL;
+        }
     }
     if (xhr.status) {
         errorText = xhr.status + ': ' + errorText;
     }
-    /*
-    if (xhr.responseURL) {
-        errorText += ': ' + xhr.responseURL;
-    }
-    */
     document.getElementById('error-output').style.display = 'block';
     document.getElementById('error-output').innerHTML = errorText;
 };
