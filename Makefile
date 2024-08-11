@@ -7,13 +7,13 @@ update: update-purecss update-htmx
 update-purecss:
 	@echo "fetch/update purecss"
 	npm pack --quiet purecss@^3.0.0
-	tar -xf purecss*.tgz --strip-components 2 -C src/main/resources/static/css package/build/pure.css
-	tar -xf purecss*.tgz --strip-components 2 -C src/main/resources/static/css package/build/grids-responsive.css
+	tar -xf purecss*.tgz --strip-components 2 -C src/main/resources/static/lib/css package/build/pure.css
+	tar -xf purecss*.tgz --strip-components 2 -C src/main/resources/static/lib/css package/build/grids-responsive.css
 
 update-htmx:
 	@echo "fetch/update htmx"
 	npm pack --quiet htmx.org@^2.0.0
-	tar -xf htmx*.tgz --strip-components 2 -C src/main/resources/static/js package/dist/htmx.js
+	tar -xf htmx*.tgz --strip-components 2 -C src/main/resources/static/lib/js package/dist/htmx.js
 
 start:
 	@echo "\nstarting.."
