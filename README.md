@@ -58,7 +58,7 @@ Open [http://localhost:8081/](http://localhost:8081/) in a browser.
 ## Notes
 
 Htmx and Pure.css are directly included in the repository,
-but can also be fethed/updated with npm.
+but can also be fetched/updated with npm.
 ```
 npm pack --quiet htmx.org@^2.0.0
 tar -xf htmx*.tgz --strip-components 2 -C src/main/resources/static/lib/js package/dist/htmx.js
