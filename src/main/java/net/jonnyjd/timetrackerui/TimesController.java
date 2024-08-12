@@ -18,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+// TODO: switch to java.time.Instant or LocalDateTime or ZonedDateTime (since Java 8)
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class TimesController {
 
 	public TimesController(@Value("${timetracker.base-url}") String base_url) {
 		this.BASE_URL = base_url;
+		// We might want to use DateTimeFormatter (since Java 8)
 		this.inFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 		this.outFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 	}
@@ -63,6 +65,7 @@ public class TimesController {
 				.toUriString();
 		List<TimeRecord> records = restClient.get()
 				.uri(url)
+				// TODO: tell what content type we accept
 				.retrieve()
 				.body(new ParameterizedTypeReference<>() {});
 		List<TimeRecord> fixedRecords = new ArrayList<>();
@@ -82,16 +85,19 @@ public class TimesController {
 	public String postTimes(@RequestParam(name="email") @Valid @Email String email,
 							@RequestParam(name="start") @Valid
 								@DateTimeFormat(pattern = "d.M.yyyy H:m", fallbackPatterns = "yyyy-M-d H:m") Date start,
+							// TODO: we might want to use LocalDateTime or ZonedDateTime as Date is old
 							@RequestParam(name="end") @Valid
 								@DateTimeFormat(pattern = "d.M.yyyy H:m", fallbackPatterns = "yyyy-M-d H:m") Date end,
 							Model model) {
 		RestClient restClient = RestClient.create(BASE_URL);
 		MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
 		formData.add("email", email);
+		// TODO: handle time zones? (probably too much, see LocalDateTime and ZonedDateTime)
 		formData.add("start", outFormat.format(start));
 		formData.add("end", outFormat.format(end));
 		TimeRecord record = restClient.post()
 				.uri("/records")
+				// TODO: tell what content type we provide
 				.body(formData)
 				.retrieve()
 				.body(TimeRecord.class);
