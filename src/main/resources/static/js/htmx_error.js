@@ -38,12 +38,13 @@ function handleHTMXError(evt) {
     }
     document.getElementById('error-output').style.display = 'block';
     document.getElementById('error-output').innerHTML = errorText;
+    document.getElementById('times-output').innerHTML = '';
 };
 
 document.body.addEventListener('htmx:beforeRequest', function(evt) {
     document.getElementById('error-output').style.display = 'none';
     document.getElementById('error-output').innerHTML = '';
-    evt.target.innnerHTML = '';
+    document.getElementById('times-output').innerHTML = '(loading)';
 });
 
 document.body.addEventListener('htmx:sendError', handleHTMXError);
