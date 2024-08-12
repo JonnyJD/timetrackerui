@@ -3,7 +3,7 @@
 all: start
 
 run-docker:
-	docker run -it --rm -p 8081:8081 --add-host host.docker.internal:host-gateway timetrackerui
+	docker run -t --rm -p 8081:8081 --add-host host.docker.internal:host-gateway timetrackerui
 
 setup-docker:
 	docker build -t timetrackerui .

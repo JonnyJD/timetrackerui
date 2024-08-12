@@ -22,17 +22,17 @@ and then copy the JAR file to a smaller layer.
 docker build -t timetrackerui .
 ```
 
-Create the container and run it interactively (`-it`).
+Create the container and run it in this terminal.
 This container is also removed automatically when it has stopped.
 ```
-docker run -it --rm -p 8081:8081 --add-host host.docker.internal:host-gateway timetrackerui
+docker run --rm -p 8081:8081 --add-host host.docker.internal:host-gateway timetrackerui
 ```
 If a different port should be opened on the host, like `8082`,
 this can be done with `-p 8082:8081`.
 The added host `host.docker.internal` is only required on Linux.
 Windows and Mac handle htis automatically with Docker Desktop:
 ```
-docker run -it --rm -p 8081:8081 timetrackerui
+docker run --rm -p 8081:8081 timetrackerui
 ```
 
 #### Using Local Java Without Docker
