@@ -2,6 +2,12 @@
 
 all: start
 
+run-docker:
+	docker run -it --rm -p 8081:8081 --add-host host.docker.internal:host-gateway timetrackerui
+
+setup-docker:
+	docker build -t timetrackerui .
+
 # build and trigger restart
 classes:
 	./gradlew classes
