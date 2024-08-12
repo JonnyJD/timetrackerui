@@ -28,8 +28,10 @@ update-htmx:
 start:
 	@echo "\nstarting.."
 	docker start timetracker
-	./gradlew bootrun
+	#./gradlew -t bootRun --args='--spring.profiles.active=dev'
+	./gradlew bootRun
 
+# TODO: make ports configurable, maybe even use docker network
 run: setup
 	@echo "\ncreating and starting.."
 	docker run -d -p 8080:8080 --name timetracker alirizasaral/timetracker:1
@@ -42,6 +44,7 @@ status:
 	@echo "\nlast log entries.."
 	docker logs -n 3 timetracker
 
+# TODO: make sure we remove temporary images
 setup:
 	@echo "\nrunning setup.."
 	docker pull alirizasaral/timetracker:1
@@ -62,3 +65,7 @@ prune:
 purge: clean
 	@echo "\npurging.."
 	-docker rmi alirizasaral/timetracker:1
+
+introspect: setup
+	-docker history alirizasaral/timetracker:1 --format {{.CreatedBy}} --no-trunc | tac > timetracker_docker_history
+	-docker logs timetracker

@@ -66,3 +66,6 @@ npm pack --quiet purecss@^3.0.0
 tar -xf purecss*.tgz --strip-components 2 -C src/main/resources/static/lib/css package/build/pure.css
 tar -xf purecss*.tgz --strip-components 2 -C src/main/resources/static/lib/css package/build/grids-responsive.css
 ```
+
+There is a Makefile that is used for general development task.
+Many of these are more complex or multi-step versions of the ones provided here.
