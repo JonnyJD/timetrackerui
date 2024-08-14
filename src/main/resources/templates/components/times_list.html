@@ -1,14 +1,20 @@
-<table class="pure-table">
-  <tr>
-    <th>E-Mail</th>
-    <th>Start</th>
-    <th>End</th>
-  </tr>
-  <tr th:each="entry : ${records}">
-    <td th:text="${entry.email}">Email</td>
-    <td th:text="${entry.start}">Start</td>
-    <td th:text="${entry.end}">End</td>
-  </tr>
-</table>
+<div th:if="${not #lists.isEmpty(records)}">
+  <p>Number of records: <span th:text="${#lists.size(records)}"></span></p>
+  <table class="pure-table">
+    <tr>
+      <th>E-Mail</th>
+      <th>Start</th>
+      <th>End</th>
+    </tr>
+    <tr th:each="entry : ${records}">
+      <td th:text="${entry.email}">Email</td>
+      <td th:text="${entry.start}">Start</td>
+      <td th:text="${entry.end}">End</td>
+    </tr>
+  </table>
+</div>
+<div th:if="${#lists.isEmpty(records)}">
+  <p>No records found.</p>
+</div>
 
 <!-- vim: set ts=2 sw=2 et: //-->
